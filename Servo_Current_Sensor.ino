@@ -11,7 +11,7 @@
 
 
 double posChip = 0; 
-void moveGripper(int angle = posChip, bool doDetach = true);
+void moveGripper(int angle = position, bool doDetach = true);
 bool isAttached = false;
 
 Servo motor;
@@ -54,7 +54,7 @@ void moveServo(int angle, bool doDetach) {
     motor.attach(Servo0);
     isAttached = true;
   }
-  int pos = posChip;
+  int pos = position;
   if (angle < pos) {
     while (angle < pos) {
       pos--;
@@ -73,7 +73,7 @@ void moveServo(int angle, bool doDetach) {
     motor.detach();
     isAttached = false;
   }
-  posChip = pos;
+  position = pos;
 }
 
 void loop()
@@ -90,11 +90,11 @@ void loop()
   {
     case 'A':
       motor(openLoc);
-      Serial.println("Gripper Opened");
+      Serial.println("Servo Opened");
       break;
     case 'B':
       motor(closeLoc);
-      Serial.println("Gripper Closed");
+      Serial.println("Servo Closed");
       break;
     case 'C':
       readCurrent();
